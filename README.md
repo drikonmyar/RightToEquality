@@ -1,2 +1,2 @@
 # RightToEquality
-Equal Rights for All
+Web Application to capture public sentiment on Equal Rights for All
