@@ -1,0 +1,141 @@
+/* Full-screen gradient background */
+body {
+    font-family: 'Cormorant Garamond', serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+/* Elegant Title */
+h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Styling */
+form {
+    width: 80%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Label Styling */
+label {
+    font-weight: 600;
+    margin-top: 15px;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+}
+
+/* Input Fields & Select */
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 14px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    backdrop-filter: blur(10px);
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    box-sizing: border-box;
+    /* Ensures consistent sizing */
+}
+
+/* Fixing Select Dropdown */
+select {
+    -webkit-appearance: none;
+    /* Remove default styling */
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 10"><polygon points="0,0 20,0 10,10" fill="white"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 12px;
+    padding-right: 40px;
+    /* Prevents text from overlapping arrow */
+}
+
+/* Placeholder Color */
+input::placeholder,
+textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+}
+
+/* Focus Effect */
+input:focus,
+select:focus,
+textarea:focus {
+    background: rgba(255, 255, 255, 0.3);
+    outline: none;
+    transform: scale(1.02);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Larger Textarea */
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Stylish Submit Button */
+button {
+    width: 100%;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    border: 2px solid white;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 20px;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+}
+
+/* Responsive for Smaller Screens */
+@media (max-width: 600px) {
+    form {
+        width: 90%;
+    }
+}
+
+/* Row layout for Sex and Age fields */
+.row {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+/* Equal width for Sex & Age columns */
+.column {
+    flex: 1;
+}
+
+/* Style for mandatory asterisk */
+.required {
+    color: red;
+    font-weight: bold;
+    margin-left: 5px;
+}
