@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Exo+2:wght@400;700&display=swap');
+
 /* Full-screen gradient background */
 body {
     font-family: 'Cormorant Garamond', serif;
@@ -13,6 +16,7 @@ body {
 
 /* Elegant Title */
 h2 {
+    font-family: 'Bungee Tint', cursive;
     font-size: 32px;
     margin-bottom: 20px;
     text-align: center;
@@ -31,6 +35,9 @@ form {
 
 /* Label Styling */
 label {
+    font-family: 'Exo 2', sans-serif;
+    text-transform: uppercase;
+    color: #a9a8a8;
     font-weight: 600;
     margin-top: 15px;
     font-size: 18px;
@@ -41,6 +48,7 @@ label {
 input,
 select,
 textarea {
+    font-family: 'Exo 2', sans-serif;
     width: 100%;
     padding: 14px;
     margin-top: 5px;
@@ -95,6 +103,8 @@ textarea {
 
 /* Stylish Submit Button */
 button {
+    font-family: 'Exo 2', sans-serif;
+    text-transform: uppercase;
     width: 100%;
     padding: 14px;
     background: rgba(255, 255, 255, 0.3);
