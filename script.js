@@ -13,9 +13,9 @@ const IPINFO_TOKEN = "8a426bbaca9e24";
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// Function to get user details (IP, location, browser, device)
+// Function to get user details (IP, location, browser, device, isp)
 async function getUserInfo() {
-    let ip = "Unknown", location = "Unknown", device = "Unknown", browser = "Unknown";
+    let ip = "Unknown", location = "Unknown", device = "Unknown", browser = "Unknown", isp = "Unknown";
 
     // Fetch IP and location from API
     try {
@@ -23,6 +23,7 @@ async function getUserInfo() {
         const data = await response.json();
         ip = data.ip;
         location = `${data.city}, ${data.region}, ${data.country}`;
+        isp = data.org;
     } catch (err) {
         console.error("Error fetching IP:", err);
     }
@@ -31,7 +32,7 @@ async function getUserInfo() {
     browser = navigator.userAgent;
     device = /Mobi|Android/i.test(navigator.userAgent) ? "Mobile" : "Desktop";
 
-    return { ip, location, device, browser };
+    return { ip, location, device, browser, isp };
 }
 
 async function storeData(event) {
@@ -68,7 +69,8 @@ async function storeData(event) {
                     ip_address: userInfo.ip,
                     location: userInfo.location,
                     device: userInfo.device,
-                    browser: userInfo.browser
+                    browser: userInfo.browser,
+                    isp: userInfo.isp
                 }
             ]);
 
