@@ -168,21 +168,22 @@ document.addEventListener("DOMContentLoaded", storeVisitData);
 // ✅ Fetch count when page loads
 document.addEventListener("DOMContentLoaded", updateSubmissionCount);
 
-const NEWSAPI_TOKEN = "52084c4108024655aa223dfbac05c078";
-const NEWS_TOPIC = "feminism";
-const NEWS_STARTDATE = new Date(new Date().setDate(new Date().getDate() - 30)).toISOString().split('T')[0];
+// const NEWSAPI_TOKEN = "52084c4108024655aa223dfbac05c078";
+// const NEWS_TOPIC = "feminism";
+// const NEWS_STARTDATE = new Date(new Date().setDate(new Date().getDate() - 30)).toISOString().split('T')[0];
 // console.log(NEWS_STARTDATE);
 
 async function fetchNews() {
-    const response = await fetch('https://newsapi.org/v2/everything?q=' + NEWS_TOPIC + '&from=' + NEWS_STARTDATE + '&sortBy=popularity&apiKey=' + NEWSAPI_TOKEN);
-    const data = await response.json();
+    const response = await fetch('https://api.thenewsapi.com/v1/news/top?api_token=ojZ4Ixd01hm607ESXWulk7DDKZygqotve8sVIC36&page=1&published_after=2025-02-25&search=feminism%20|%20feminist%20|%20alimony%20|%20rape');
+    const dataReceived = await response.json();
     const newsList = document.getElementById("news-list");
 
-    data.articles.forEach(article => {
+    dataReceived.data.forEach(article => {
+        // console.log(article);
         let div = document.createElement("div");
         div.className = "news-item";
         div.innerHTML = `
-            <img src="${article.urlToImage || 'https://via.placeholder.com/80'}" alt="News">
+            <img src="${article.image_url || 'https://via.placeholder.com/80'}" alt="News">
             <a href="${article.url}" target="_blank">${article.title}</a>
         `;
         newsList.appendChild(div);
