@@ -1,3 +1,7 @@
+// sounds
+const successSound = document.getElementById("successSound");
+const errorSound = document.getElementById("errorSound");
+
 // Get form element
 const form = document.getElementById("sentimentForm");
 
@@ -20,6 +24,7 @@ async function storeData(event) {
 
     // Check if required fields are filled
     if (!name || !sex || !sentiment) {
+        errorSound.play();
         alert("Please fill in all required fields!");
         return;
     }
@@ -39,6 +44,7 @@ async function storeData(event) {
             ]);
 
         if (error) {
+            errorSound.play();
             alert("Error adding submission: " + error.message);
             return;
         }
@@ -46,8 +52,10 @@ async function storeData(event) {
         // ✅ Update count immediately after successful insertion
         updateSubmissionCount();
 
+        successSound.play();
         alert("Form submitted successfully!");
     } catch (err) {
+        errorSound.play();
         alert("Error: " + err.message);
     } finally {
         form.reset();
