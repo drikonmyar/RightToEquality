@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Cabin+Sketch:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Exo+2:wght@400;700&display=swap');
 
 /* Full-screen gradient background */
@@ -16,13 +16,19 @@ body {
 
 /* Elegant Title */
 h2 {
-    font-family: 'Bungee Tint', cursive;
-    font-size: 32px;
+    font-family: "Cabin Sketch", sans-serif;
+    font-size: 40px;
     margin-bottom: 20px;
     text-align: center;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 1px;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pink-text {
+    color: #ff1493;
+    /* Deep pink */
+    font-weight: bold;
 }
 
 /* Form Styling */
@@ -148,4 +154,38 @@ button:hover {
     color: red;
     font-weight: bold;
     margin-left: 5px;
+}
+
+/* Submission count */
+#submissionCount {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #a9a8a8;
+}
+
+footer {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 10px 0;
+    color: #555;
+    background-color: #f8f8f8;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+
+footer a {
+    color: #d63384;
+    /* Feminist pink color */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }

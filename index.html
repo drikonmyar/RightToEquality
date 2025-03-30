@@ -10,14 +10,14 @@
 
 <body>
 
-    <h2>Share Your Sentiment on Feminism</h2>
-    <form>
-        <label for="name">Name <span class="required">*</span></label>
+    <h2>Yes, I am a <span class="pink-text">feminist</span></h2>
+    <form id="sentimentForm">
+        <label for="name">NAME <span class="required">*</span></label>
         <input type="text" id="name" placeholder="Enter your name" required>
 
         <div class="row">
             <div class="column">
-                <label for="sex">Sex <span class="required">*</span></label>
+                <label for="sex">SEX <span class="required">*</span></label>
                 <select id="sex" required>
                     <option value="" disabled selected>Select</option>
                     <option value="male">Male</option>
@@ -28,12 +28,12 @@
             </div>
 
             <div class="column">
-                <label for="age">Age</label>
+                <label for="age">AGE</label>
                 <input type="number" id="age" placeholder="Enter your age">
             </div>
         </div>
 
-        <label for="sentiment">Your Sentiment <span class="required">*</span></label>
+        <label for="sentiment">YOUR SENTIMENT <span class="required">*</span></label>
         <select id="sentiment" required>
             <option value="" disabled selected>Select</option>
             <option value="liberal_feminism">Liberal Feminist – Wants equal rights in laws, jobs, and education.
@@ -55,12 +55,22 @@
             </option>
         </select>
 
-        <label for="comments">Comments</label>
+        <label for="comments">COMMENTS</label>
         <textarea id="comments" placeholder="Write your thoughts..."></textarea>
 
         <button type="submit">Submit</button>
+
+        <!-- Submission count display -->
+        <p id="submissionCount">Total Users Submitted: 0</p>
     </form>
 
+    <footer>
+        <p>© 2025 <a href="https://iamfeminist.com" target="_blank">iamfeminist.com</a>. All Rights Reserved. |
+            Contact: <a href="mailto:alonefeminist@gmail.com">alonefeminist@gmail.com</a>
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
