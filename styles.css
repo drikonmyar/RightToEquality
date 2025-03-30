@@ -6,12 +6,25 @@ body {
     font-family: 'Cormorant Garamond', serif;
     background: linear-gradient(135deg, #1e3c72, #2a5298);
     height: 100vh;
-    margin-top: 3.5%;
+    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
+    justify-content: center;
     color: white;
+}
+
+/* Move the entire form and h2 text up */
+.form-container {
+    margin-top: -30px;
+    /* Adjust this value to move it up */
+    position: relative;
+}
+
+/* Move the h2 text up slightly */
+h2 {
+    margin-top: -20px;
+    /* Adjust this value as needed */
 }
 
 /* Elegant Title */
