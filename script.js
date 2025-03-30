@@ -93,6 +93,56 @@ async function storeData(event) {
     }
 }
 
+// Function to Get Device & Browser Info
+function getDeviceInfo() {
+    const userAgent = navigator.userAgent;
+    let device = "Desktop";
+
+    if (/Mobi|Android/i.test(userAgent)) {
+        device = "Mobile";
+    } else if (/Tablet|iPad/i.test(userAgent)) {
+        device = "Tablet";
+    }
+
+    return {
+        browser: navigator.userAgentData ? navigator.userAgentData.brands[0].brand : navigator.userAgent,
+        os: navigator.platform,
+        device: device,
+        screenResolution: `${window.screen.width}x${window.screen.height}`,
+        language: navigator.language
+    };
+}
+
+// Function to Store Visit Data in Supabase
+async function storeVisitData() {
+    try {
+        // Get User Metadata
+        const { ip, location, isp } = await getUserInfo();
+        const { browser, os, device, screenResolution, language } = getDeviceInfo();
+
+        // Insert Data into Supabase
+        const { data, error } = await supabase.from("visitors").insert([
+            {
+                ip_address: ip,
+                location: location,
+                isp: isp,
+                browser: browser,
+                os: os,
+                device: device,
+                screen_resolution: screenResolution,
+                language: language,
+                visit_time: new Date().toISOString()
+            }
+        ]);
+
+        if (error) {
+            console.error("Error storing visitor data:", error.message);
+        }
+    } catch (err) {
+        console.error("Error:", err.message);
+    }
+}
+
 async function updateSubmissionCount() {
     try {
         // ✅ Fetch only the count of records
@@ -111,6 +161,9 @@ async function updateSubmissionCount() {
         console.error("Error:", err.message);
     }
 }
+
+// ✅ Run When Page Loads
+document.addEventListener("DOMContentLoaded", storeVisitData);
 
 // ✅ Fetch count when page loads
 document.addEventListener("DOMContentLoaded", updateSubmissionCount);
