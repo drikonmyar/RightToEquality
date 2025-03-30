@@ -6,20 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Public Sentiment Form</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script defer src="script.js"></script>
 </head>
 
 <body>
 
     <h2>Are you a <span class="pink-text">feminist</span> ?</h2>
-    <form id="sentimentForm">
-        <label for="name">NAME <span class="required">*</span></label>
-        <input type="text" id="name" placeholder="Enter your name" required>
+    <form id="sentimentForm" onsubmit="storeData(event)">
+        <label for="name">NAME *</label>
+        <input type="text" id="name" placeholder="Enter your name" required />
 
         <div class="row">
             <div class="column">
-                <label for="sex">SEX <span class="required">*</span></label>
+                <label for="sex">SEX *</label>
                 <select id="sex" required>
-                    <option value="" disabled selected>Select</option>
+                    <option id="default-text" value="" disabled selected>Select</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                     <option value="other">Other</option>
@@ -33,7 +35,7 @@
             </div>
         </div>
 
-        <label for="sentiment">YOUR SENTIMENT <span class="required">*</span></label>
+        <label for="sentiment">YOUR SENTIMENT *</label>
         <select id="sentiment" required>
             <option value="" disabled selected>Select your sentiment</option>
             <option value="liberal">Liberal Feminist – Wants equal rights in laws, jobs, and education.</option>
@@ -54,13 +56,12 @@
         </select>
 
         <label for="comments">COMMENTS</label>
-        <textarea id="comments" placeholder="Write your thoughts..."></textarea>
+        <textarea id="comments" placeholder="Express your thoughts..."></textarea>
 
-        <button type="submit">Submit</button>
-
-        <!-- Submission count display -->
-        <p id="submissionCount">Total Users Submitted: 0</p>
+        <button type="submit">SUBMIT</button>
     </form>
+
+    <p id="submissionCount">Total Users Submitted: 0</p>
 
     <footer>
         <p>© 2025 <a href="https://iamfeminist.com" target="_blank">iamfeminist.com</a>. All Rights Reserved. |
@@ -68,7 +69,6 @@
         </p>
     </footer>
 
-    <script src="script.js"></script>
 </body>
 
 </html>
