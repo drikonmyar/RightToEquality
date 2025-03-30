@@ -167,3 +167,26 @@ document.addEventListener("DOMContentLoaded", storeVisitData);
 
 // ✅ Fetch count when page loads
 document.addEventListener("DOMContentLoaded", updateSubmissionCount);
+
+const NEWSAPI_TOKEN = "52084c4108024655aa223dfbac05c078";
+const NEWS_TOPIC = "feminism";
+const NEWS_STARTDATE = new Date(new Date().setDate(new Date().getDate() - 30)).toISOString().split('T')[0];
+// console.log(NEWS_STARTDATE);
+
+async function fetchNews() {
+    const response = await fetch('https://newsapi.org/v2/everything?q=' + NEWS_TOPIC + '&from=' + NEWS_STARTDATE + '&sortBy=popularity&apiKey=' + NEWSAPI_TOKEN);
+    const data = await response.json();
+    const newsList = document.getElementById("news-list");
+
+    data.articles.forEach(article => {
+        let div = document.createElement("div");
+        div.className = "news-item";
+        div.innerHTML = `
+            <img src="${article.urlToImage || 'https://via.placeholder.com/80'}" alt="News">
+            <a href="${article.url}" target="_blank">${article.title}</a>
+        `;
+        newsList.appendChild(div);
+    });
+}
+
+fetchNews();

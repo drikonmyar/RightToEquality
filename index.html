@@ -14,56 +14,70 @@
 <body>
 
     <!-- <img src="images/favicon.png" alt="Top Right Image" class="top-right-image"> -->
-    <h2>Be a <span class="pink-text">feminist</span> !</h2>
-    <form id="sentimentForm" onsubmit="storeData(event)">
-        <label for="name">NAME *</label>
-        <input type="text" id="name" placeholder="Enter your name" required />
 
-        <div class="row">
-            <div class="column">
-                <label for="sex">SEX *</label>
-                <select id="sex" required>
-                    <option id="default-text" value="" disabled selected>Select</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
-                    <option value="prefer_not">Prefer not to say</option>
+    <div class="container">
+        <aside class="news-sidebar">
+            <h2 class="news-header">Voice of <span class="pink-text">feminism</span></h2>
+            <ul id="news-list"></ul>
+        </aside>
+        <section class="form-container">
+            <h2 class="form-header">Be a <span class="pink-text">feminist</span> !</h2>
+            <form id="sentimentForm" onsubmit="storeData(event)">
+                <label for="name">NAME *</label>
+                <input type="text" id="name" placeholder="Enter your name" required />
+
+                <div class="row">
+                    <div class="column">
+                        <label for="sex">GENDER *</label>
+                        <select id="sex" required>
+                            <option id="default-text" value="" disabled selected>Select</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                            <option value="prefer_not">Prefer not to say</option>
+                        </select>
+                    </div>
+
+                    <div class="column">
+                        <label for="age">AGE</label>
+                        <input type="number" id="age" placeholder="Enter your age">
+                    </div>
+                </div>
+
+                <label for="sentiment">YOUR SENTIMENT *</label>
+                <select id="sentiment" required>
+                    <option value="" disabled selected>Select your sentiment</option>
+                    <option value="liberal">Liberal Feminist – Wants equal rights in laws, jobs, and education.</option>
+                    <option value="radical">Radical Feminist – Believes patriarchal society unfairly favors men and must
+                        change.
+                    </option>
+                    <option value="pro-sex">Pro-Sex Feminist – Support sexual liberation and sex work rights.</option>
+                    <option value="separatist">Separatist Feminist – Believes women should live independently from men.
+                    </option>
+                    <option value="matriarchal">Matriarchal Feminist – Believes women should lead society instead of
+                        men.
+                    </option>
+                    <option value="equity">Equity Feminist – Seeks legal equality but rejects extreme feminism.</option>
+                    <option value="fourth-wave">Fourth-Wave Feminist – Fights dress-based discrimination via social
+                        media.
+                    </option>
+                    <option value="anti-feminist">Anti-Feminist – Actively oppose feminism and its goals.</option>
+                    <option value="egalitarian">Egalitarian – Believe in gender equality but reject feminism as
+                        unnecessary or
+                        biased.</option>
+                    <option value="post-feminist">Post-Feminist – Think feminism was needed in the past but is no longer
+                        relevant.</option>
                 </select>
-            </div>
 
-            <div class="column">
-                <label for="age">AGE</label>
-                <input type="number" id="age" placeholder="Enter your age">
-            </div>
-        </div>
+                <label for="comments">COMMENTS</label>
+                <textarea id="comments" placeholder="Express your thoughts..."></textarea>
 
-        <label for="sentiment">YOUR SENTIMENT *</label>
-        <select id="sentiment" required>
-            <option value="" disabled selected>Select your sentiment</option>
-            <option value="liberal">Liberal Feminist – Wants equal rights in laws, jobs, and education.</option>
-            <option value="radical">Radical Feminist – Believes patriarchal society unfairly favors men and must change.
-            </option>
-            <option value="pro-sex">Pro-Sex Feminist – Support sexual liberation and sex work rights.</option>
-            <option value="separatist">Separatist Feminist – Believes women should live independently from men.</option>
-            <option value="matriarchal">Matriarchal Feminist – Believes women should lead society instead of men.
-            </option>
-            <option value="equity">Equity Feminist – Seeks legal equality but rejects extreme feminism.</option>
-            <option value="fourth-wave">Fourth-Wave Feminist – Fights dress-based discrimination via social media.
-            </option>
-            <option value="anti-feminist">Anti-Feminist – Actively oppose feminism and its goals.</option>
-            <option value="egalitarian">Egalitarian – Believe in gender equality but reject feminism as unnecessary or
-                biased.</option>
-            <option value="post-feminist">Post-Feminist – Think feminism was needed in the past but is no longer
-                relevant.</option>
-        </select>
+                <button type="submit">SUBMIT</button>
+            </form>
 
-        <label for="comments">COMMENTS</label>
-        <textarea id="comments" placeholder="Express your thoughts..."></textarea>
-
-        <button type="submit">SUBMIT</button>
-    </form>
-
-    <p id="submissionCount">Total Users Submitted: 0</p>
+            <p id="submissionCount">Total Users Submitted: 0</p>
+        </section>
+    </div>
 
     <footer>
         <p>© 2025 <a href="https://iamfeminist.com" target="_blank">iamfeminist.com</a>. All Rights Reserved. |
