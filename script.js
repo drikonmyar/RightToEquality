@@ -168,26 +168,91 @@ document.addEventListener("DOMContentLoaded", storeVisitData);
 // ✅ Fetch count when page loads
 document.addEventListener("DOMContentLoaded", updateSubmissionCount);
 
-// const NEWSAPI_TOKEN = "52084c4108024655aa223dfbac05c078";
-// const NEWS_TOPIC = "feminism";
-// const NEWS_STARTDATE = new Date(new Date().setDate(new Date().getDate() - 30)).toISOString().split('T')[0];
-// console.log(NEWS_STARTDATE);
+// Fetch news from the API and store it in Supabase
+async function fetchAndStoreNews() {
+    const totalPages = 10;  // We want to call the API 10 times
+    const today = new Date().toISOString().split('T')[0];
+    let allArticles = [];
 
-async function fetchNews() {
-    const response = await fetch('https://api.thenewsapi.com/v1/news/top?api_token=ojZ4Ixd01hm607ESXWulk7DDKZygqotve8sVIC36&page=1&published_after=2025-02-25&search=feminism%20|%20feminist%20|%20alimony%20|%20rape');
-    const dataReceived = await response.json();
+    for (let page = 1; page <= totalPages; page++) {
+        const response = await fetch(`https://api.thenewsapi.com/v1/news/top?api_token=ojZ4Ixd01hm607ESXWulk7DDKZygqotve8sVIC36&page=${page}&published_on=${today}&search=feminism%20|%20feminist%20|%20alimony%20|%20rape`);
+        const dataReceived = await response.json();
+
+        // Collect all articles from all pages
+        allArticles = allArticles.concat(dataReceived.data);
+    }
+
+    // Insert all collected articles into Supabase
+    const { data, error } = await supabase
+        .from('news')
+        .upsert(allArticles.map(article => ({
+            title: article.title,
+            url: article.url,
+            image_url: article.image_url || 'https://placehold.co/600x400?text=News',
+            published_at: article.published_at,
+            date_fetched: new Date().toISOString().split('T')[0],  // Store the current date
+            uuid: article.uuid
+        })));
+
+    if (error) {
+        console.error("Error inserting data:", error);
+    } else {
+        console.log("News data successfully stored.");
+    }
+}
+
+// Check if news for today already exists in the database
+async function checkAndFetchNews() {
+    const today = new Date().toISOString().split('T')[0];  // Get the current date (YYYY-MM-DD)
+
+    // Check if there's already news data for today
+    const { data, error } = await supabase
+        .from('news')
+        .select('*')
+        .eq('date_fetched', today);
+
+    if (error) {
+        console.error("Error fetching data:", error);
+        return;
+    }
+
+    // If no data for today, fetch from the API and store it
+    if (data.length === 0) {
+        console.log("Fetching news as no data found for today...");
+        await fetchAndStoreNews();
+    } else {
+        console.log("News already exists for today, displaying news...");
+    }
+}
+
+// Call checkAndFetchNews when the page loads
+document.addEventListener("DOMContentLoaded", async () => {
+    await checkAndFetchNews();
+    displayNews();
+});
+
+// Display the fetched news
+async function displayNews() {
+    const { data, error } = await supabase
+        .from('news')
+        .select('*')
+        .order('published_at', { ascending: false });
+
     const newsList = document.getElementById("news-list");
+    newsList.innerHTML = ''; // Clear any existing news
 
-    dataReceived.data.forEach(article => {
-        // console.log(article);
+    if (error) {
+        console.error("Error fetching news:", error);
+        return;
+    }
+
+    data.forEach(article => {
         let div = document.createElement("div");
         div.className = "news-item";
         div.innerHTML = `
-            <img src="${article.image_url || 'https://via.placeholder.com/80'}" alt="News">
+            <img src="${article.image_url}" alt="News">
             <a href="${article.url}" target="_blank">${article.title}</a>
         `;
         newsList.appendChild(div);
     });
 }
-
-fetchNews();
