@@ -171,11 +171,12 @@ document.addEventListener("DOMContentLoaded", updateSubmissionCount);
 // Fetch news from the API and store it in Supabase
 async function fetchAndStoreNews() {
     const totalPages = 10;  // We want to call the API 10 times
-    const today = new Date().toISOString().split('T')[0];
+    // const today = new Date().toISOString().split('T')[0];
+    const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
     let allArticles = [];
 
     for (let page = 1; page <= totalPages; page++) {
-        const response = await fetch(`https://api.thenewsapi.com/v1/news/top?api_token=ojZ4Ixd01hm607ESXWulk7DDKZygqotve8sVIC36&page=${page}&published_on=${today}&search=feminism%20|%20feminist%20|%20alimony`);
+        const response = await fetch(`https://api.thenewsapi.com/v1/news/top?api_token=ojZ4Ixd01hm607ESXWulk7DDKZygqotve8sVIC36&page=${page}&published_on=${yesterday}&search=feminism%20|%20feminist%20|%20alimony`);
         const dataReceived = await response.json();
         if (!dataReceived.data) {
             break;
