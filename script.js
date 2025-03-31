@@ -175,7 +175,7 @@ async function fetchAndStoreNews() {
     let allArticles = [];
 
     for (let page = 1; page <= totalPages; page++) {
-        const response = await fetch(`https://api.thenewsapi.com/v1/news/top?api_token=ojZ4Ixd01hm607ESXWulk7DDKZygqotve8sVIC36&page=${page}&published_on=${today}&search=feminism%20|%20feminist%20|%20alimony%20|%20rape`);
+        const response = await fetch(`https://api.thenewsapi.com/v1/news/top?api_token=ojZ4Ixd01hm607ESXWulk7DDKZygqotve8sVIC36&page=${page}&published_on=${today}&search=feminism%20|%20feminist%20|%20alimony`);
         const dataReceived = await response.json();
         if (!dataReceived.data) {
             break;
