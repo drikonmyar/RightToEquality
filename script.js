@@ -177,12 +177,17 @@ async function fetchAndStoreNews() {
     for (let page = 1; page <= totalPages; page++) {
         const response = await fetch(`https://api.thenewsapi.com/v1/news/top?api_token=ojZ4Ixd01hm607ESXWulk7DDKZygqotve8sVIC36&page=${page}&published_on=${today}&search=feminism%20|%20feminist%20|%20alimony%20|%20rape`);
         const dataReceived = await response.json();
+        if (!dataReceived.data) {
+            break;
+        }
 
         // Collect all articles from all pages
         allArticles = allArticles.concat(dataReceived.data);
     }
-
-    // Insert all collected articles into Supabase
+    if (allArticles.length === 0) {
+        console.log("No data fetched due to API issue");
+        return;
+    }
     const { data, error } = await supabase
         .from('news')
         .upsert(allArticles.map(article => ({
