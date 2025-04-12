@@ -239,6 +239,24 @@ document.addEventListener("DOMContentLoaded", async () => {
     displayNews();
 });
 
+function formatDateTimeToIST(dateTimeString) {
+    const isoDateTime = dateTimeString.replace(" ", "T") + "Z";
+    const date = new Date(isoDateTime);
+
+    const options = {
+        timeZone: 'Asia/Kolkata',
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+    };
+
+    const formatted = date.toLocaleString('en-IN', options);
+    return `${formatted} IST`;
+}
+
 // Display the fetched news
 async function displayNews() {
     const { data, error } = await supabase
@@ -260,6 +278,7 @@ async function displayNews() {
         div.innerHTML = `
             <img src="${article.image_url}" alt="News">
             <a href="${article.url}" target="_blank">${article.title}</a>
+            <small class="news-date">${formatDateTimeToIST(article.published_at)}</small>
         `;
         newsList.appendChild(div);
     });
